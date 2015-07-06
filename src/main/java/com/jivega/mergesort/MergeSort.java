@@ -5,7 +5,12 @@ import java.util.List;
 
 public class MergeSort {
 
-	public List<Integer> order(){
+	private List<Integer> listtoorder;
+	public MergeSort(List<Integer> listtoorder){
+		this.listtoorder = listtoorder;
+	}
+	
+	public List<Integer> sort(){
 		List<Integer> result = new ArrayList<Integer>();
 		result.add(2);
 		result.add(3);
