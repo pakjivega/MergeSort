@@ -1,4 +1,4 @@
-package com.jivega.mergesort;
+package com.jivega.sort;
 
 import org.junit.Test;
 import org.junit.Assert;
