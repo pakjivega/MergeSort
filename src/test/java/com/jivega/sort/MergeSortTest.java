@@ -12,17 +12,58 @@ import com.jivega.sort.MergeSort;
 public class MergeSortTest {
 
 	private List<Integer> listtoorder;
+	Sort merge = null;
 	
 	@Before
 	public void setup(){
-		listtoorder = Arrays.asList(40, 50, 10, 700, 20,34);
+        listtoorder = UtilArrays.buildRandomList(100000);
+		merge = null;
 	}
 	
 	@Test
-    public void testApp()
+    public void testMergeSort()
     {
-		MergeSort merge = new MergeSort();
+		long startTime = System.nanoTime();
+        merge = new MergeSort();
 		List<Integer> output = merge.sort(listtoorder);
-        Assert.assertTrue( output.get(0) < output.get(1) );
+		long endTime = System.nanoTime();
+        long duration = (endTime - startTime);
+        System.out.println("Time (ms) to execute MergeSort is: " + duration/1000000);
+        
+		Integer previous = 0;
+		for ( Integer i : output) {
+			Assert.assertTrue( previous < i );
+		}        
+    }
+
+	@Test
+    public void testSlowSort()
+    {
+		long startTime = System.nanoTime();
+        merge = new SlowSort();
+		List<Integer> output = merge.sort(listtoorder);
+		long endTime = System.nanoTime();
+        long duration = (endTime - startTime);
+        System.out.println("Time (ms) to execute SlowSort is: " + duration/1000000);
+        
+		Integer previous = 0;
+		for ( Integer i : output) {
+			Assert.assertTrue( previous < i );
+		}
+    }
+	@Test
+    public void testInsertionSort()
+    {
+		long startTime = System.nanoTime();
+        merge = new InsertionSort();
+		List<Integer> output = merge.sort(listtoorder);
+		long endTime = System.nanoTime();
+        long duration = (endTime - startTime);
+        System.out.println("Time (ms) to execute InsertionSort is: " + duration/1000000);
+        
+		Integer previous = 0;
+		for ( Integer i : output) {
+			Assert.assertTrue( previous < i );
+		}
     }
 }
